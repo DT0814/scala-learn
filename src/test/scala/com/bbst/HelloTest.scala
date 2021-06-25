@@ -1,3 +1,5 @@
+package com.bbst
+
 import org.mockito.Mockito._
 import org.scalatest.funsuite.AnyFunSuite
 import org.slf4j.Logger
@@ -8,6 +10,6 @@ class HelloTest extends AnyFunSuite {
     val hello = new Hello(logger)
 
     hello.sayHello()
-    verify(logger, times(1)).info("Hello, world!")
+    verify(logger, times(1)).info("com.bbst.Hello, world!")
   }
 }
