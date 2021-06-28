@@ -36,7 +36,7 @@ class CollectionsTest extends AnyFunSuite {
     val set = Set("foo", "bar")
 
     assert(set.contains("foo"))
-    assert(Set("foo","foo","bar") == Set("foo", "bar"))
+    assert(Set("foo", "foo", "bar") == Set("foo", "bar"))
     assert(set.corresponds(Set("foo1", "bar1"))((k, v) => v == k.concat("1")))
     assert(set.exists(it => it.startsWith("f")))
     assert(set.forall(it => !it.isEmpty))
@@ -52,7 +52,15 @@ class CollectionsTest extends AnyFunSuite {
     assert(set.take(1) == Set("foo"))
     assert(set.takeRight(1) == Set("bar"))
     assert(set.takeWhile(it => it == "foo") == Set("foo"))
-    assert(Set("foo","bar").foldLeft("-")((r,it)=>r+it) == "-foobar")
-    assert(Set("foo","bar").foldRight("-")((r,it)=>r+it) == "foobar-")
+    assert(Set("foo", "bar").foldLeft("-")((r, it) => r + it) == "-foobar")
+    assert(Set("foo", "bar").foldRight("-")((r, it) => r + it) == "foobar-")
+  }
+
+  test("practice map api") {
+    val map = Map("foo" -> "bar", "new foo" -> "new bar").withDefault(_ => {
+      "not exist"
+    })
+    assert(map.getOrElse("foo","not exist") == "bar")
+    assert(map.getOrElse("not exist","not exist") == "not exist")
   }
 }
